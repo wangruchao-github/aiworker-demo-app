@@ -1,0 +1,11 @@
+{
+  "name": "aiworker-demo-app",
+  "version": "1.0.0",
+  "description": "Demo application managed by AIWorker and Pi Coding Agent",
+  "author": "wangrc",
+  "type": "module",
+  "scripts": {
+    "test": "node src/test.js",
+    "start": "node src/app.js"
+  }
+}
