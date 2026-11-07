@@ -1,0 +1,63 @@
+# ============================================================
+# GitHub Pages 自动发布工作流
+# 需求：DEMO-REQ-105 写一个静态页面介绍这个项目，使其可以通过 GitHub Pages 访问
+# 模式 A（已确认采用）：Pages Source = GitHub Actions，推送即发布 + 支持手动重发
+# 静态根目录：docs/
+# @ahtor wangrc
+# ============================================================
+name: Deploy static site to GitHub Pages
+
+on:
+  # 推送到主干或任意版本分支即自动发布
+  push:
+    branches:
+      - main
+      - 'release/**'
+  # 支持手动重发（Settings → Actions → Deploy static site to GitHub Pages → Run workflow）
+  workflow_dispatch:
+
+# 只允许并发一次发布，避免多次推送互相覆盖
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+permissions:
+  contents: read      # 读取仓库内容
+  pages: write        # 发布到 GitHub Pages
+  id-token: write     # 获取 OIDC 令牌用于 Pages 部署
+
+jobs:
+  build:
+    name: 校验站点产物
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 校验根 index.html 与 docs/index.html 同步
+        run: node scripts/build-pages.mjs --check
+
+      - name: 单元测试与站点约束测试
+        run: npm test
+
+      - name: 上传 Pages 产物
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+  deploy:
+    name: 发布到 GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

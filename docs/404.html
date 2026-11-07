@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--
+  AIWorker Demo App · 自定义 404 页面（GitHub Pages 未命中路径时使用）
+  @ahtor wangrc
+-->
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>404 · 页面不存在 · AIWorker Demo App</title>
+<meta name="robots" content="noindex, follow" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23060912'/%3E%3Cpath d='M20 44 L32 16 L44 44 M25 35 h14' stroke='%2335e6ff' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+<style>
+:root{
+  --bg:#060912;--text:#e9edfa;--muted:#9aa6c4;--brand:#35e6ff;--brand-2:#8b7cff;
+  --border:rgba(255,255,255,.12);--surface:rgba(255,255,255,.05);
+  --font-sans:"Inter","PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --font-mono:"JetBrains Mono",Menlo,Consolas,monospace;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;padding:32px;text-align:center;
+  background:var(--bg);color:var(--text);font-family:var(--font-sans);line-height:1.75;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(800px 460px at 20% 0%,rgba(53,230,255,.16),transparent 62%),
+             radial-gradient(700px 420px at 80% 10%,rgba(139,124,255,.17),transparent 62%)}
+.code{font-family:var(--font-mono);font-size:clamp(84px,20vw,180px);font-weight:800;line-height:1;letter-spacing:-.04em;
+  background:linear-gradient(120deg,var(--brand),var(--brand-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+h1{font-size:clamp(20px,3vw,28px);margin:14px 0 10px;color:#fff}
+p{color:var(--muted);max-width:52ch;margin:0 auto 26px}
+.actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:12px;font-size:14.5px;font-weight:650;
+  border:1px solid transparent;text-decoration:none;transition:.2s}
+.btn:hover{text-decoration:none;transform:translateY(-2px)}
+.btn-primary{background:linear-gradient(120deg,var(--brand),var(--brand-2));color:#04121a}
+.btn-ghost{background:var(--surface);border-color:var(--border);color:var(--text)}
+code{font-family:var(--font-mono);font-size:13px;color:var(--brand);background:var(--surface);padding:2px 7px;border-radius:6px}
+.foot{margin-top:34px;color:#76839f;font-size:12.5px}
+</style>
+</head>
+<body>
+  <main>
+    <div class="code">404</div>
+    <h1>这个页面不在需求范围内</h1>
+    <p>
+      你访问的路径没有命中本站的任何资源。本站采用「多页 + 相对锚点」结构，
+      没有前端路由，因此不存在深层路径——可从下面的入口重新开始。
+    </p>
+    <div class="actions">
+      <a class="btn btn-primary" href="./">返回首页</a>
+      <a class="btn btn-ghost" href="./guide.html">打开发布手册</a>
+    </div>
+    <p class="foot">aiworker-demo-app · DEMO-REQ-105 · @author wangrc</p>
+  </main>
+</body>
+</html>
