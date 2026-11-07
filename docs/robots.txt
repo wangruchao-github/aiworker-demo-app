@@ -1,0 +1,4 @@
+# https://wangruchao-github.github.io/aiworker-demo-app/
+# 站点根路径：https://wangruchao-github.github.io/aiworker-demo-app/
+User-agent: *
+Allow: /

@@ -6,6 +6,9 @@
   "type": "module",
   "scripts": {
     "test": "node src/test.js",
-    "start": "node src/app.js"
+    "start": "node src/app.js",
+    "pages:build": "node scripts/build-pages.mjs",
+    "pages:check": "node scripts/build-pages.mjs --check",
+    "pages:serve": "node scripts/serve-docs.mjs"
   }
 }
